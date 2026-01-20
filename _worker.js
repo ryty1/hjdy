@@ -18,7 +18,7 @@ https://cfxr.eu.org/getSub
 `;
 
 let urls = [];
-let clashConverterUrl = "https://clash.594880.xyz"; // clash-sub-converter 部署地址
+let clashConverterUrl = ""; // clash-sub-converter 部署地址
 
 export default {
 	async fetch(request, env) {
@@ -31,7 +31,7 @@ export default {
 		BotToken = env.TGTOKEN || BotToken;
 		ChatID = env.TGID || ChatID;
 		TG = env.TG || TG;
-		clashConverterUrl = env.CLASH_CONVERTER_URL || clashConverterUrl;
+		clashConverterUrl = env.CLASH_URL || clashConverterUrl;
 		// 移除 clashConverterUrl 末尾的斜杠
 		if (clashConverterUrl.endsWith('/')) {
 			clashConverterUrl = clashConverterUrl.slice(0, -1);
