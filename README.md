@@ -1,4 +1,4 @@
-# SerokVip 订阅汇聚
+# 【非原创】SerokVip 订阅汇聚，修改自[CM大佬](https://github.com/cmliu/CF-Workers-SUB)项目，自用！
 
 一个基于 Cloudflare Workers 的订阅汇聚工具，支持多种节点格式的聚合与转换。
 
@@ -111,7 +111,7 @@ https://example.com/subscribe
 |-------|--------|------|
 | `TOKEN` | `auto` | 订阅访问令牌 |
 | `PASSWORD` | 无 | 管理页面登录密码（必填，否则无法登录） |
-| `CLASH_CONVERTER_URL` | `https://clash.594880.xyz` | Clash 转换后端 |
+| `CLASH_CONVERTER_URL` | `https://abc.com` | 适配[Clash 转换后端](https://github.com/ryty1/clash-sub-converter) |
 | `SUBNAME` | `SerokVip` | 订阅文件名 |
 | `SUBUPTIME` | `6` | 订阅更新间隔（小时） |
 | `GUESTTOKEN` / `GUEST` | 自动生成 | 访客订阅令牌 |
@@ -127,7 +127,7 @@ https://example.com/subscribe
 
 ## 🔧 Clash 转换后端
 
-本项目使用独立的 [clash-sub-converter](./clash-sub-converter) 作为 Clash 格式转换后端。
+本项目使用独立的 [clash-sub-converter](https://github.com/ryty1/clash-sub-converter) 项目作为 Clash 格式转换后端。
 
 如需自建，请参考 `clash-sub-converter/README.md`。
 
@@ -141,10 +141,7 @@ https://example.com/subscribe
 - 新增独立登录密码（PASSWORD 变量）
 - 新增 `/admin` 管理入口
 - 全新深色主题 UI
+- 适配手机显示
 - 修复节点顺序问题
 
 ---
-
-## 📄 License
-
-MIT License
