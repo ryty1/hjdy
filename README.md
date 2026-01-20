@@ -1,4 +1,5 @@
 # 【非原创】SerokVip 订阅汇聚，修改自[CM大佬](https://github.com/cmliu/CF-Workers-SUB)项目，自用！
+# 感谢 `CM大佬` 提供优秀的作品。
 
 一个基于 Cloudflare Workers 的订阅汇聚工具，支持多种节点格式的聚合与转换。
 
@@ -31,7 +32,7 @@
    - 保持默认即可，系统会自动识别 `wrangler.toml`
    - 点击 `Save and Deploy`
 
-#### 3. 配置环境变量
+#### 3. 必要配置环境变量
 
 部署完成后，进入项目详情页：
 `设置` (Settings) → `变量和机密` (Variables and Secrets) → `添加` (Add)
@@ -40,6 +41,7 @@
 |-------|------|
 | `TOKEN` | 订阅访问令牌 |
 | `PASSWORD` | 管理页面登录密码 |
+| `CLASH_URL` | `https://abc.com` | 仅适配[Clash 转换后端](https://github.com/ryty1/clash-sub-converter) |
 
 #### 4. 绑定 KV（在线编辑用，可选）
 
@@ -105,13 +107,10 @@ https://example.com/subscribe
 
 ---
 
-## ⚙️ 全部环境变量
+## ⚙️ 可选全部环境变量
 
 | 变量名 | 默认值 | 说明 |
 |-------|--------|------|
-| `TOKEN` | `auto` | 订阅访问令牌 |
-| `PASSWORD` | 无 | 管理页面登录密码（必填，否则无法登录） |
-| `CLASH_CONVERTER_URL` | `https://abc.com` | 适配[Clash 转换后端](https://github.com/ryty1/clash-sub-converter) |
 | `SUBNAME` | `SerokVip` | 订阅文件名 |
 | `SUBUPTIME` | `6` | 订阅更新间隔（小时） |
 | `GUESTTOKEN` / `GUEST` | 自动生成 | 访客订阅令牌 |
@@ -129,7 +128,7 @@ https://example.com/subscribe
 
 本项目使用独立的 [clash-sub-converter](https://github.com/ryty1/clash-sub-converter) 项目作为 Clash 格式转换后端。
 
-如需自建，请参考 `clash-sub-converter/README.md`。
+需自建，请参考 `README.md`。
 
 ---
 
