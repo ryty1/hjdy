@@ -1,0 +1,28 @@
+name = "sub"
+main = "_worker.js"
+compatibility_date = "2024-01-01"
+
+# ============================================
+# KV 命名空间绑定（用于在线编辑功能）
+# ============================================
+# 步骤：
+# 1. 在 Cloudflare Dashboard 创建 KV 命名空间
+#    Workers & Pages → KV → Create a namespace
+# 2. 复制命名空间 ID
+# 3. 取消下面的注释并填入 ID
+#
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "你的KV命名空间ID"
+
+# ============================================
+# 环境变量配置
+# ============================================
+# 敏感信息建议在 Cloudflare Dashboard 或 GitHub Secrets 中配置
+# 而不是直接写在这里
+#
+[vars]
+# TOKEN = "your-access-token"           # 订阅访问令牌
+# PASSWORD = "your-admin-password"      # 管理页面登录密码
+# CLASH_CONVERTER_URL = "https://clash.594880.xyz"  # Clash 转换后端
+# SUBNAME = "SerokVip"                  # 订阅文件名
