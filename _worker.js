@@ -7,7 +7,7 @@ let guestToken = ''; //可以随便取，或者uuid生成，https://1024tools.co
 let BotToken = ''; //可以为空，或者@BotFather中输入/start，/newbot，并关注机器人
 let ChatID = ''; //可以为空，或者@userinfobot中获取，/start
 let TG = 0; //小白勿动， 开发者专用，1 为推送所有的访问信息，0 为不推送订阅转换后端的访问信息与异常访问
-let FileName = 'SerokVip';
+let FileName = 'SerokVip汇聚订阅';
 let SUBUpdateTime = 6; //自定义订阅更新时间，单位小时
 let total = 99;//TB
 let timestamp = 4102329600000;//2099-12-31
@@ -27,7 +27,7 @@ export default {
 		const url = new URL(request.url);
 		const token = url.searchParams.get('token');
 		mytoken = env.TOKEN || mytoken;
-		mypassword = env.PASSWORD || mypassword; // 管理页面登录密码
+		mypassword = env.PASSWORD || mypassword || mytoken; // 密码默认使用 TOKEN
 		BotToken = env.TGTOKEN || BotToken;
 		ChatID = env.TGID || ChatID;
 		TG = env.TG || TG;
@@ -64,7 +64,7 @@ export default {
 			}
 		}
 
-		if (!([mytoken, fakeToken, 访客订阅].includes(token) || url.pathname.startsWith("/" + mytoken))) {
+		if (!([mytoken, fakeToken, 访客订阅].includes(token) || url.pathname == ("/" + mytoken) || url.pathname.includes("/" + mytoken + "?"))) {
 			if (TG == 1 && url.pathname !== "/" && url.pathname !== "/favicon.ico") await sendMessage(`#异常访问 ${FileName}`, request.headers.get('CF-Connecting-IP'), `UA: ${userAgent}</tg-spoiler>\n域名: ${url.hostname}\n<tg-spoiler>入口: ${url.pathname + url.search}</tg-spoiler>`);
 			if (env.URL302) return Response.redirect(env.URL302, 302);
 			else if (env.URL) return await proxyURL(env.URL, url);
@@ -77,7 +77,12 @@ export default {
 		} else {
 			if (env.KV) {
 				await 迁移地址列表(env, 'LINK.txt');
-				MainData = await env.KV.get('LINK.txt') || MainData;
+				if (userAgent.includes('mozilla') && !url.search) {
+					await sendMessage(`#编辑订阅 ${FileName}`, request.headers.get('CF-Connecting-IP'), `UA: ${userAgentHeader}</tg-spoiler>\n域名: ${url.hostname}\n<tg-spoiler>入口: ${url.pathname + url.search}</tg-spoiler>`);
+					return await KV(request, env, 'LINK.txt', 访客订阅, mypassword);
+				} else {
+					MainData = await env.KV.get('LINK.txt') || MainData;
+				}
 			} else {
 				MainData = env.LINK || MainData;
 				if (env.LINKSUB) urls = await ADD(env.LINKSUB);
@@ -899,7 +904,7 @@ async function 迁移地址列表(env, txt = 'ADD.txt') {
 
 async function KV(request, env, txt = 'ADD.txt', guest, password) {
 	const url = new URL(request.url);
-	const loginPassword = password; // 管理页面登录密码
+	const loginPassword = password || mytoken; // 使用传入的密码或默认 TOKEN
 	try {
 		// POST请求处理
 		if (request.method === "POST") {
@@ -1029,6 +1034,21 @@ async function KV(request, env, txt = 'ADD.txt', guest, password) {
 						max-width: 1200px;
 						margin: 0 auto;
 						padding: 24px;
+					}
+					@media (max-width: 768px) {
+						.main-container {
+							padding: 8px;
+						}
+						.section-content {
+							padding: 8px;
+						}
+						.header {
+							padding-bottom: 8px;
+							margin-bottom: 12px;
+						}
+						.header h1 {
+							font-size: 14px;
+						}
 					}
 					.header {
 						display: flex;
@@ -1178,6 +1198,9 @@ async function KV(request, env, txt = 'ADD.txt', guest, password) {
 					.info-value {
 						color: var(--text-primary);
 						word-break: break-all;
+					}
+					.collapsed + .section-content {
+						display: none;
 					}
 					.collapse-icon {
 						transition: transform 0.2s;
@@ -1343,7 +1366,6 @@ async function KV(request, env, txt = 'ADD.txt', guest, password) {
 							showToast('已复制到剪贴板');
 						});
 					}
-					
 					
 					// 保存内容
 					function saveContent() {
