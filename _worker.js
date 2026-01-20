@@ -7,7 +7,7 @@ let guestToken = ''; //可以随便取，或者uuid生成，https://1024tools.co
 let BotToken = ''; //可以为空，或者@BotFather中输入/start，/newbot，并关注机器人
 let ChatID = ''; //可以为空，或者@userinfobot中获取，/start
 let TG = 0; //小白勿动， 开发者专用，1 为推送所有的访问信息，0 为不推送订阅转换后端的访问信息与异常访问
-let FileName = 'SerokVip汇聚订阅';
+let FileName = 'SerokVip';
 let SUBUpdateTime = 6; //自定义订阅更新时间，单位小时
 let total = 99;//TB
 let timestamp = 4102329600000;//2099-12-31
@@ -936,7 +936,7 @@ async function KV(request, env, txt = 'ADD.txt', guest, password) {
 			<!DOCTYPE html>
 			<html>
 				<head>
-					<title>${FileName} 订阅管理</title>
+					<title>${FileName} 汇聚订阅</title>
 					<meta charset="utf-8">
 					<meta name="viewport" content="width=device-width, initial-scale=1">
 					<style>
@@ -1048,6 +1048,36 @@ async function KV(request, env, txt = 'ADD.txt', guest, password) {
 						}
 						.header h1 {
 							font-size: 14px;
+						}
+						.sub-label {
+							min-width: 50px !important;
+							width: 50px !important;
+							font-size: 11px;
+							flex-shrink: 0;
+						}
+						.sub-link {
+							flex: 1;
+							font-size: 11px;
+						}
+						.info-item {
+							flex-wrap: nowrap;
+						}
+						.info-label {
+							min-width: unset !important;
+							width: auto !important;
+							font-size: 11px;
+							flex-shrink: 0;
+							white-space: nowrap;
+						}
+						.info-value {
+							font-size: 10px;
+							overflow: hidden;
+							text-overflow: ellipsis;
+						}
+						.copy-btn {
+							padding: 2px 6px;
+							font-size: 10px;
+							margin-left: 4px;
 						}
 					}
 					.header {
